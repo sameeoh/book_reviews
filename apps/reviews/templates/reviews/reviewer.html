@@ -1,0 +1,61 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Profile | {{reviewer.alias}}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'reviews/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="welcome">
+            <div id="heading">
+                <h4>User Alias: {{reviewer.alias}}</h4>
+            </div>
+            <div class="topright" id="reviewertop">
+                <a href="/home">Home</a>
+                <span>|</span>
+                <a href="/books/add/book_review">Add a Book and Review</a>
+                <span>|</span>
+                <a href="/logout">Logout</a>
+            </div>
+            <br>
+        </div>
+        <br>
+        <br>
+        <div id="userinfo" class="reviewbox">
+            <h5>Name: {{reviewer.name}}</h5>
+            <br>
+            <p>Email: {{reviewer.email}}</p>
+            <br>
+            <p>Total Reviews: {{count}}</p>
+            <br>
+        </div>
+        <br>
+        <br>
+        <div id="bookreviews" class="reviewbox">
+            <h5>Posted Reviews on the following books:</h3>
+            <br>
+            {% for r in reviews %}
+            <p><a href="/books/{{reviews.book.id}}">{{r.book.title}}</a></p>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

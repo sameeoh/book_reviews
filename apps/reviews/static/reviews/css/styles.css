@@ -1,0 +1,69 @@
+#wrapper{
+    width: 1000px;
+    margin: 25px auto;
+}
+#reg{
+    width: 600px;
+    margin: 0 auto;
+}
+#login{
+    width: 600px;
+    margin: 0 auto;
+}
+.messages{
+    color: red;
+}
+
+#welcome > *{
+    display: inline-block;
+}
+#heading{
+    width: 350px;
+}
+.topright{
+    margin-left: 400px;
+    vertical-align: top;
+}
+#homereviews{
+    display: inline-block;
+    width: 600px
+}
+#homebooks{
+    display: inline-block;
+    vertical-align: top;
+}
+#bookscroll{
+    width: 300px;
+    vertical-align: top;
+    overflow: scroll;
+    border: 1px solid black;
+    margin-left: 15px;
+    height: 200px;
+}
+.italic{
+    font-style: italic;
+}
+.reviewbox{
+    border-bottom: 1px solid lightslategray;
+}
+#bookreviews{
+    width: 400px;
+    display: inline-block;
+    vertical-align: top;
+}
+#addreview{
+    margin-left: 150px; 
+    width: 400px;
+    display: inline-block;
+}
+#userinfo{
+    width: 400px;
+    display: inline-block;
+}
+#reviewertop{
+    margin-left: 325px;
+}
+img{
+    height: 20px;
+    width: 100px;
+}

@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Add a Book and Reivew</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'reviews/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="welcome">
+            <h3>Add a New Book Title and a Reivew</h3>
+            <div class="topright">
+                <a href="/home">Home</a>
+                <span>|</span>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+            <form action="/books/add/book_review" method="POST">
+                {%csrf_token%}
+                <div class="form-group">
+                    <label for="title">Book Title:</label>
+                    <input type="text" id="title" name="title" class="form-control" placeholder="Enter Book Title">
+                </div>
+                <div class="form-group">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <p>Author:</p>
+                    <div class="form-group col-md-4">
+                        <label for="author">Choose from the List:</label>
+                        <select name="author" id="" class="form-control">
+                            <option disabled selected value> -- select an author -- </option>
+                            {% for a in authors %}
+                                <option value="{{a.id}}">{{a.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <br>
+                    <label for="newauthor">Or Add a New Author:</label>
+                    <input type="text" id="newauthor" name="newauthor" class="form-control" placeholder="Enter New Author">
+                </div>
+                <div class="form-group">
+                    <label for="review">Review:</label>
+                    <input type="text" id="review" name="review" class="form-control" placeholder="Enter Review">
+                </div>
+                <label for="rating">Rating:</label>
+                <select name="rating" id="" class="form-control">
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-primary">Add Book and Review</button>
+            </form>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

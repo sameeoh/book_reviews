@@ -1,0 +1,86 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Books | {{current_book.title}}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'reviews/css/styles.css' %}" media="screen" title="no title" charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="welcome">
+            <div id="heading">
+                <h4>{{current_book.title}}</h4>
+                <h5>Author: {{current_book.author.name}}</h5>
+            </div>
+            <div class="topright">
+                <a href="/home">Home</a>
+                <span>|</span>
+                <a href="/logout">Logout</a>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div id="bookreviews" class="reviewbox">
+            <h5>Recent Book Reviews:</h3>
+            {% for r in book_reviews %}
+            <p>Rating: 
+                {% if r.rating == 5 %}
+                    <img src="{% static 'reviews/images/5.png' %}" />
+                {% elif r.rating == 4 %} 
+                    <img src="{% static 'reviews/images/4.png' %}" />
+                {% elif r.rating == 3 %}
+                    <img src="{% static 'reviews/images/4.png' %}" />
+                {% elif r.rating == 2 %}
+                    <img src="{% static 'reviews/images/4.png' %}" />
+                {% elif r.rating == 1 %}
+                    <img src="{% static 'reviews/images/4.png' %}" />
+                {% endif %}
+            </p>
+            <p class="italic">
+                <a href="/reviewer/{{r.reviewer.id}}">{{r.reviewer.name}}</a> says: {{r.review}}</p>
+            <p class="italic">Posted on: {{r.created_at}}</p>
+            {% if request.session.user_id == r.reviewer.id %}
+            <a href="/review/delete/{{r.id}}">Delete the Review</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div id="addreview">
+            <form action="/books/add/review/{{current_book.id}}" method="POST">
+            {% csrf_token %}
+            Add a review: 
+            <div class="form-group">
+                <label for="review">Review:</label>
+                <input type="text" id="review" name="review" class="form-control" placeholder="Enter Review">
+            </div>
+            <label for="rating">Rating:</label>
+            <select name="rating" id="" class="form-control">
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-primary">Add Review</button>
+            </form>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
