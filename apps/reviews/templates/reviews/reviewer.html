@@ -44,7 +44,7 @@
             <h5>Posted Reviews on the following books:</h3>
             <br>
             {% for r in reviews %}
-            <p><a href="/books/{{reviews.book.id}}">{{r.book.title}}</a></p>
+            <p><a href="/books/{{r.book.id}}">{{r.book.title}}</a></p>
             {% endfor %}
         </div>
     </div>
